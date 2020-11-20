@@ -2,6 +2,8 @@
 
 This is the HMPPS Interventions Service
 
+[![Known Vulnerabilities](https://snyk.io/test/github/ministryofjustice/hmpps-interventions-service/badge.svg)](https://snyk.io/test/github/ministryofjustice/hmpps-interventions-service)
+
 ## Quickstart
 
 Build and test:
