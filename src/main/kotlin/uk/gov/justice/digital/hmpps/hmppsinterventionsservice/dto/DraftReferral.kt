@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter
 data class DraftReferral(
   val id: String? = null,
   val created: String? = null,
-  ) {
-  constructor(referral: Referral): this(
-      referral.id?.let { it.toString() },
-      referral.created?.let { DateTimeFormatter.ISO_INSTANT.format(it.toInstant()) },
+) {
+  constructor(referral: Referral) : this(
+    referral.id!!.toString(),
+    DateTimeFormatter.ISO_INSTANT.format(referral.created!!.toInstant()),
   )
 }
