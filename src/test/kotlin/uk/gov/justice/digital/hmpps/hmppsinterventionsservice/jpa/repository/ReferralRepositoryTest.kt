@@ -21,6 +21,7 @@ class ReferralRepositoryTest @Autowired constructor(
     entityManager.flush()
 
     val found = referralRepository.findByIdOrNull(referrals[0].id!!)
+
     Assertions.assertThat(found).isEqualTo(referrals[0])
   }
 }
