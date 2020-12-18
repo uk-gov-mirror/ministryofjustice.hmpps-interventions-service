@@ -9,10 +9,14 @@ data class DraftReferral(
   val id: UUID? = null,
   val createdAt: OffsetDateTime? = null,
   val completionDeadline: LocalDate? = null,
+  val createdByUserId: String? = null,
+  val serviceCategoryId: UUID? = null,
+  val complexityLevelId: UUID? = null,
 ) {
   constructor(referral: Referral) : this(
-    referral.id!!,
-    referral.createdAt!!,
-    referral.completionDeadline,
+    id = referral.id!!,
+    createdAt = referral.createdAt!!,
+    completionDeadline = referral.completionDeadline,
+    createdByUserId = referral.createdByUserID,
   )
 }
