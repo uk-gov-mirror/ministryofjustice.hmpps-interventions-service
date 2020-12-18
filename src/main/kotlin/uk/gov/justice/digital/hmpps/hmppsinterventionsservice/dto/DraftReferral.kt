@@ -18,5 +18,7 @@ data class DraftReferral(
     createdAt = referral.createdAt!!,
     completionDeadline = referral.completionDeadline,
     createdByUserId = referral.createdByUserID,
+    serviceCategoryId = referral.serviceCategoryID,
+    complexityLevelId = referral.complexityLevelID,
   )
 }

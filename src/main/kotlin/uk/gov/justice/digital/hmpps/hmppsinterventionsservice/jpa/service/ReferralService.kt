@@ -19,13 +19,21 @@ class ReferralService(val repository: ReferralRepository) {
   }
 
   fun updateDraftReferral(id: UUID, update: DraftReferral): Referral? {
-    val ref = getDraftReferral(id) ?: return null
+    val referralToUpdate = getDraftReferral(id) ?: return null
 
     update.completionDeadline?.let {
-      ref.completionDeadline = update.completionDeadline
-      return repository.save(ref)
+      referralToUpdate.completionDeadline = it
     }
-    return ref
+
+    update.complexityLevelId?.let {
+      referralToUpdate.complexityLevelID = it
+    }
+
+    update.serviceCategoryId?.let {
+      referralToUpdate.serviceCategoryID = it
+    }
+
+    return repository.save(referralToUpdate)
   }
 
   fun getDraftReferralsCreatedByUserID(userID: String): List<DraftReferral> {
