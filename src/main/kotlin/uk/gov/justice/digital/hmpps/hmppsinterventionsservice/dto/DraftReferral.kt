@@ -7,12 +7,12 @@ import java.util.UUID
 
 data class DraftReferral(
   val id: UUID? = null,
-  val created: OffsetDateTime? = null,
-  val completionDeadline: LocalDate? = null
+  val createdAt: OffsetDateTime? = null,
+  val completionDeadline: LocalDate? = null,
 ) {
   constructor(referral: Referral) : this(
     referral.id!!,
-    referral.created!!,
+    referral.createdAt!!,
     referral.completionDeadline,
   )
 }

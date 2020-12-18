@@ -31,12 +31,12 @@ class ReferralServiceTest @Autowired constructor(
 
     val draftReferral = DraftReferral(
       id = UUID.fromString("ce364949-7301-497b-894d-130f34a98bff"),
-      created = OffsetDateTime.of(LocalDate.of(2020, 12, 1), LocalTime.MIN, ZoneOffset.UTC)
+      createdAt = OffsetDateTime.of(LocalDate.of(2020, 12, 1), LocalTime.MIN, ZoneOffset.UTC)
     )
 
     val updated = referralService.updateDraftReferral(referral.id!!, draftReferral)
     assertThat(updated!!.id).isEqualTo(referral.id!!)
-    assertThat(updated.created).isEqualTo(referral.created)
+    assertThat(updated.createdAt).isEqualTo(referral.createdAt)
   }
 
   @Test
@@ -86,7 +86,7 @@ class ReferralServiceTest @Autowired constructor(
 
     val savedDraftReferral = referralService.getDraftReferral(referral.id!!)
     assertThat(savedDraftReferral!!.id).isEqualTo(referral.id)
-    assertThat(savedDraftReferral.created).isEqualTo(referral.created)
+    assertThat(savedDraftReferral.createdAt).isEqualTo(referral.createdAt)
     assertThat(savedDraftReferral.completionDeadline).isEqualTo(draftReferral.completionDeadline)
   }
 
@@ -97,7 +97,7 @@ class ReferralServiceTest @Autowired constructor(
 
     val savedDraftReferral = referralService.getDraftReferral(draftReferral.id!!)
     assertThat(savedDraftReferral!!.id).isNotNull
-    assertThat(savedDraftReferral!!.created).isNotNull
+    assertThat(savedDraftReferral!!.createdAt).isNotNull
   }
 
   @Test
@@ -108,7 +108,7 @@ class ReferralServiceTest @Autowired constructor(
 
     val savedDraftReferral = referralService.getDraftReferral(referral.id!!)
     assertThat(savedDraftReferral!!.id).isEqualTo(referral.id)
-    assertThat(savedDraftReferral.created).isEqualTo(referral.created)
+    assertThat(savedDraftReferral.createdAt).isEqualTo(referral.createdAt)
     assertThat(savedDraftReferral.completionDeadline).isEqualTo(referral.completionDeadline)
   }
 

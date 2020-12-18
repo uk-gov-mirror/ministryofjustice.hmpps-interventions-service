@@ -16,6 +16,6 @@ import javax.persistence.Table
 data class Referral(
   @Column(name = "created_by_userid") var createdByUserID: String? = null,
   var completionDeadline: LocalDate? = null,
-  @CreationTimestamp var created: OffsetDateTime? = null,
+  @CreationTimestamp var createdAt: OffsetDateTime? = null,
   @Id @GeneratedValue var id: UUID? = null,
 )

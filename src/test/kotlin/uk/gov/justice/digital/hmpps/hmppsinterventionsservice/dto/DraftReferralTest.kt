@@ -25,7 +25,7 @@ class DraftReferralTest(@Autowired private val json: JacksonTester<DraftReferral
     val createdDate = OffsetDateTime.parse("2020-12-04T10:42:43+00:00")
 
     assertThrows<RuntimeException> {
-      DraftReferral(Referral(created = createdDate))
+      DraftReferral(Referral(createdAt = createdDate))
     }
   }
 
@@ -42,12 +42,12 @@ class DraftReferralTest(@Autowired private val json: JacksonTester<DraftReferral
   fun `test serialization of newly created referral`() {
     val referral = Referral(
       id = UUID.fromString("3B9ED289-8412-41A9-8291-45E33E60276C"),
-      created = OffsetDateTime.parse("2020-12-04T10:42:43+00:00")
+      createdAt = OffsetDateTime.parse("2020-12-04T10:42:43+00:00")
     )
     val out = json.write(DraftReferral(referral))
     assertThat(out).isEqualToJson(
       """
-      {"id": "3b9ed289-8412-41a9-8291-45e33e60276c", "created": "2020-12-04T10:42:43Z"}
+      {"id": "3b9ed289-8412-41a9-8291-45e33e60276c", "createdAt": "2020-12-04T10:42:43Z"}
     """
     )
   }
@@ -56,13 +56,13 @@ class DraftReferralTest(@Autowired private val json: JacksonTester<DraftReferral
   fun `test serialization of referral with completionDeadline`() {
     val referral = Referral(
       id = UUID.fromString("3B9ED289-8412-41A9-8291-45E33E60276C"),
-      created = OffsetDateTime.parse("2020-12-04T10:42:43+00:00"),
+      createdAt = OffsetDateTime.parse("2020-12-04T10:42:43+00:00"),
       completionDeadline = LocalDate.of(2021, 2, 12)
     )
     val out = json.write(DraftReferral(referral))
     assertThat(out).isEqualToJson(
       """
-      {"id": "3b9ed289-8412-41a9-8291-45e33e60276c", "created": "2020-12-04T10:42:43Z", "completionDeadline": "2021-02-12"}
+      {"id": "3b9ed289-8412-41a9-8291-45e33e60276c", "createdAt": "2020-12-04T10:42:43Z", "completionDeadline": "2021-02-12"}
     """
     )
   }
