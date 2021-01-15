@@ -80,12 +80,12 @@ class ReferralService(val repository: ReferralRepository) {
       }
     }
 
-    update.desiredOutcomeIds?.let {
+    update.desiredOutcomesIds?.let {
       if (it.isEmpty()) {
-        errors.add(FieldError(field = "desiredOutcomeIds", error = Code.CANNOT_BE_EMPTY))
+        errors.add(FieldError(field = "desiredOutcomesIds", error = Code.CANNOT_BE_EMPTY))
       }
       if (referral.serviceCategoryID == null && update.serviceCategoryId == null) {
-        errors.add(FieldError(field = "desiredOutcomeIds", error = Code.SERVICE_CATEGORY_MUST_BE_SET))
+        errors.add(FieldError(field = "desiredOutcomesIds", error = Code.SERVICE_CATEGORY_MUST_BE_SET))
       }
 
       // fixme: error if desiredOutcomeIds not valid for service category
@@ -148,8 +148,8 @@ class ReferralService(val repository: ReferralRepository) {
       referral.maximumRarDays = if (it) update.maximumRarDays else null
     }
 
-    update.desiredOutcomeIds?.let {
-      referral.desiredOutcomeIDs = it
+    update.desiredOutcomesIds?.let {
+      referral.desiredOutcomesIDs = it
     }
 
     update.serviceUser?.let {
