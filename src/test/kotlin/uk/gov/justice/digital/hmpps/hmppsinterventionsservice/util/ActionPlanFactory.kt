@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.hmppsinterventionsservice.util
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import uk.gov.justice.digital.hmpps.hmppsinterventionsservice.jpa.entity.ActionPlan
+import uk.gov.justice.digital.hmpps.hmppsinterventionsservice.jpa.entity.ActionPlanAppointment
 import uk.gov.justice.digital.hmpps.hmppsinterventionsservice.jpa.entity.AuthUser
 import uk.gov.justice.digital.hmpps.hmppsinterventionsservice.jpa.entity.Referral
 import java.time.OffsetDateTime
@@ -18,7 +19,7 @@ class ActionPlanFactory(em: TestEntityManager? = null) : EntityFactory(em) {
     createdAt: OffsetDateTime? = null,
     createdBy: AuthUser? = null,
   ): ActionPlan {
-    return save(
+    val actionPlan = save(
       ActionPlan(
         id = id ?: UUID.randomUUID(),
         referral = referral ?: referralFactory.createSent(),
@@ -28,5 +29,20 @@ class ActionPlanFactory(em: TestEntityManager? = null) : EntityFactory(em) {
         activities = mutableListOf()
       )
     )
+
+    numberOfSessions?.let {
+      for (i in 1..it) {
+        save(
+          ActionPlanAppointment(
+            sessionNumber = i,
+            createdBy = actionPlan.createdBy,
+            createdAt = actionPlan.createdAt,
+            actionPlan = actionPlan,
+            id = UUID.randomUUID(),
+          )
+        )
+      }
+    }
+    return actionPlan
   }
 }

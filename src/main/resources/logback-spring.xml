@@ -19,6 +19,18 @@
         <logger name="org.hibernate.SQL" level="debug" additivity="false">
             <appender-ref ref="stdout" />
         </logger>
+
+        <logger name="org.springframework.transaction.interceptor" level="trace" additivity="false">
+            <appender-ref ref="stdout" />
+        </logger>
+
+        <logger name="org.springframework.orm.jpa" level="debug" additivity="false">
+            <appender-ref ref="stdout" />
+        </logger>
+
+        <logger name="org.springframework.transaction" level="debug" additivity="false">
+            <appender-ref ref="stdout" />
+        </logger>
     </springProfile>
 
     <springProfile name="!local">
